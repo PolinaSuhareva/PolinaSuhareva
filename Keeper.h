@@ -25,6 +25,7 @@ public:
     void GetAll(); // получить элемент
     void GetChoice(); // получить элемент
     void Delete(); // удалить элемент
+    Keeper& operator -= (int element);
     void LoadK(); // загрузить данные из файла
     void SaveK(); // сохранить данные в файл
 };

@@ -247,15 +247,22 @@ void Keeper::Delete()
         exit(1);
     }
 
+    *this-=(stoi(choice));
+
+}
+
+Keeper & Keeper::operator-=(int element)
+{
     // сдвигаем все элементы
-    for (int count = stoi(choice); count < count_element-1; count++)
+
+    for (int count = element; count < count_element-1; count++)
     {
         int buf_count = count + 1;
         array_with_element[count] = array_with_element[buf_count];
     }
     this->count_element--;
+    return *this;
 }
-
 // Определение метода Load класса Keeper
 void Keeper::LoadK()
 {
