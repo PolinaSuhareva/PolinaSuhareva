@@ -112,7 +112,7 @@ void Students::Change()
     try
     {
         cin >> choice;
-        if (choice != "1" or choice != "2" or choice != "3" or choice != "4" or choice != "5") throw "Error";
+        if (choice != "1" and choice != "2" and choice != "3" and choice != "4" and choice != "5") throw "Error";
     }
     catch(const std::exception& e)
     {
@@ -266,7 +266,7 @@ void Teachers::Change()
     try
     {
         cin >> choice;
-        if (choice != "1" or choice != "2" or choice != "3") throw "Error";
+        if (choice != "1" and choice != "2" and choice != "3") throw "Error";
     }
     catch(const std::exception& e)
     {
@@ -398,7 +398,7 @@ void Head::Change()
     try
     {
         cin >> choice;
-        if (choice != "1" or choice != "2" or choice != "3" or choice != "4") throw "Error";
+        if (choice != "1" and choice != "2" and choice != "3" and choice != "4") throw "Error";
     }
     catch(const std::exception& e)
     {

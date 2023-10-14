@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <typeinfo>
 #include "Keeper.h"
 #include "Base.h"
 
@@ -77,38 +76,6 @@ void Keeper::Set()
     {
         cout << "Вы ввели другое число или вы неверно ввели выбор (указаны некоректные символы)" << endl;
         exit(1);
-    }
-
-    // если массив переполнен
-    if (this->count_element == this->size)
-    {
-        Base **buf_array = new Base*[size]; // создаем буферный массив для копирования объектов
-
-        for (int count = 0; count < size; count++)
-        {
-            buf_array[count] = this->array_with_element[count]; // копируем элементы
-        }
-
-        delete [] this->array_with_element; // удаляем память под массив
-
-        // выделяем новую память под наш массив
-        try
-        {
-            this->array_with_element = new Base*[size*2]; // выделяем доп. память
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << "Память не удалось выделить" << endl;
-            exit(1);
-        }
-
-        this->size = size * 2; // увеличиваем размер массива
-
-        // копируем старые элементы
-        for (int count = 0; count < count_element; count++)
-        {
-            this->array_with_element[count] = buf_array[count]; // копируем элементы
-        }
     }
 
     // если выбрали добавить студента
@@ -247,10 +214,11 @@ void Keeper::Delete()
         exit(1);
     }
 
-    *this-=(stoi(choice));
+    *this-=(stoi(choice)); // удаляем элемент под номером
 
 }
 
+// перегрузка оператора -=
 Keeper & Keeper::operator-=(int element)
 {
     // сдвигаем все элементы
@@ -282,37 +250,6 @@ void Keeper::LoadK()
 
         while (true)
         {
-            if (this->count_element == this->size)
-            {
-                Base **buf_array = new Base*[size]; // создаем буферный массив для копирования объектов
-
-                for (int count = 0; count < size; count++)
-                {
-                    buf_array[count] = this->array_with_element[count]; // копируем элементы
-                }
-
-                delete [] this->array_with_element; // удаляем память под массив
-
-                // выделяем новую память под наш массив
-                try
-                {
-                    this->array_with_element = new Base*[size*2]; // выделяем доп. память
-                }
-                catch(const std::exception& e)
-                {
-                    std::cerr << "Память не удалось выделить" << endl;
-                    exit(1);
-                }
-
-                this->size = size * 2; // увеличиваем размер массива
-
-                // копируем старые элементы
-                for (int count = 0; count < count_element; count++)
-                {
-                    this->array_with_element[count] = buf_array[count]; // копируем элементы
-                }
-            }
-
             if (!getline(loadS, line)) break;
 
             Base *ptr_student = new Students(); // создаем объект - студент
@@ -344,37 +281,6 @@ void Keeper::LoadK()
 
         while (true)
         {
-            if (this->count_element == this->size)
-            {
-                Base **buf_array = new Base*[size]; // создаем буферный массив для копирования объектов
-
-                for (int count = 0; count < size; count++)
-                {
-                    buf_array[count] = this->array_with_element[count]; // копируем элементы
-                }
-
-                delete [] this->array_with_element; // удаляем память под массив
-
-                // выделяем новую память под наш массив
-                try
-                {
-                    this->array_with_element = new Base*[size*2]; // выделяем доп. память
-                }
-                catch(const std::exception& e)
-                {
-                    std::cerr << "Память не удалось выделить" << endl;
-                    exit(1);
-                }
-
-                this->size = size * 2; // увеличиваем размер массива
-
-                // копируем старые элементы
-                for (int count = 0; count < count_element; count++)
-                {
-                    this->array_with_element[count] = buf_array[count]; // копируем элементы
-                }
-            }
-
             if (!getline(loadT, line)) break;
 
             Base *ptr_teacher = new Teachers(); // создаем объект - студент
@@ -398,37 +304,6 @@ void Keeper::LoadK()
 
         while (true)
         {
-            if (this->count_element == this->size)
-            {
-                Base **buf_array = new Base*[size]; // создаем буферный массив для копирования объектов
-
-                for (int count = 0; count < size; count++)
-                {
-                    buf_array[count] = this->array_with_element[count]; // копируем элементы
-                }
-
-                delete [] this->array_with_element; // удаляем память под массив
-
-                // выделяем новую память под наш массив
-                try
-                {
-                    this->array_with_element = new Base*[size*2]; // выделяем доп. память
-                }
-                catch(const std::exception& e)
-                {
-                    std::cerr << "Память не удалось выделить" << endl;
-                    exit(1);
-                }
-
-                this->size = size * 2; // увеличиваем размер массива
-
-                // копируем старые элементы
-                for (int count = 0; count < count_element; count++)
-                {
-                    this->array_with_element[count] = buf_array[count]; // копируем элементы
-                }
-            }
-
             if (!getline(loadH, line)) break;
 
             Base *ptr_head = new Head(); // создаем объект - студент
